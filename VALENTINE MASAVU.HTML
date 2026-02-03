@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mission valentine?</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #ffe6e6;
+            font-family: 'Arial', sans-serif;
+            overflow: hidden;
+        }
+
+        #container {
+            text-align: center;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #d63384;
+            margin-bottom: 30px;
+        }
+
+        .buttons {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        button {
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.2s ease;
+        }
+
+        #yesBtn {
+            background-color: #28a745;
+            color: white;
+            padding: 15px 30px;
+            font-size: 20px;
+        }
+
+        #noBtn {
+            background-color: #dc3545;
+            color: white;
+            padding: 15px 30px;
+            font-size: 20px;
+        }
+
+        .hidden { display: none; }
+    </style>
+</head>
+<body>
+
+    <div id="container">
+        <div id="questionSection">
+            <h1 id="questionText">Will you be my Valentine
+                wade no gifts ? 💖</h1>
+            <div class="buttons">
+                <button id="yesBtn">Yes</button>
+                <button id="noBtn">No</button>
+            </div>
+        </div>
+
+        <div id="successSection" class="hidden">
+            <h1 style="font-size: 50px;">Yah! I Can't wait! Jazzy 🥰❤️</h1>
+        </div>
+    </div>
+
+    <script>
+        const yesBtn = document.getElementById('yesBtn');
+        const noBtn = document.getElementById('noBtn');
+        const questionSection = document.getElementById('questionSection');
+        const successSection = document.getElementById('successSection');
+
+        let yesSize = 20;
+        let noSize = 20;
+        let noPaddingVertical = 15;
+        let noPaddingHorizontal = 30;
+
+        noBtn.addEventListener('click', () => {
+            // 1. Make Yes bigger
+            yesSize += 40;
+            yesBtn.style.fontSize = yesSize + "px";
+            yesBtn.style.padding = (yesSize/2) + "px " + yesSize + "px";
+
+            // 2. Make No smaller
+            noSize -= 4;
+            noPaddingVertical -= 2;
+            noPaddingHorizontal -= 4;
+
+            // Update No button style
+            noBtn.style.fontSize = noSize + "px";
+            noBtn.style.padding = noPaddingVertical + "px " + noPaddingHorizontal + "px";
+
+            // 3. If No gets too small, hide it completely
+            if (noSize <= 5) {
+                noBtn.style.display = 'none';
+            }
+        });
+
+        yesBtn.addEventListener('click', () => {
+            questionSection.classList.add('hidden');
+            successSection.classList.remove('hidden');
+            document.body.style.backgroundColor = "#ffb3d1";
+        });
+    </script>
+</body>
+</html>
